@@ -8,11 +8,18 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 
+typedef struct bins
+{
+    char *cmd;
+    int (*fun)(char *);
+} built_ins;
+
 void _free_memory(char **paths);
 
 int _strlen(char *s);
 int _strcmp(char *env, char *s);
 int _search_path(char **paths, char **tokens);
+int _atoi(char *s);
 
 char *_nltrim(char *input, size_t size);
 char *_strcat(char *dest, char *src);
