@@ -1,10 +1,24 @@
 #include "main.h"
 
+int builtin_exit(char *arg)
+{
+	if (arg != NULL)
+	{
+		int exitCode = _atoi(arg);
+		exit(exitCode);
+	}
+	else
+	{
+		exit(EXIT_SUCCESS);
+	}
+	return (0);
+}
+
 int main(int argc, char *argv[])
 {
 
 	/*size_t chars_read;*/
-	int getline_result = 0, strlen_result = 0;
+	int getline_result = 0, strlen_result = 0, b = 0;
 	char *string = NULL;
 	size_t size = 0;
 	/*char *args[3];*/
@@ -23,6 +37,11 @@ int main(int argc, char *argv[])
 	int t;
 	*/
 	char **paths = NULL;
+
+	built_ins bins[] = {
+		{"exit", builtin_exit},
+		{NULL, NULL},
+	};
 
 	(void)argc;
 
@@ -57,6 +76,15 @@ int main(int argc, char *argv[])
 
 		tokens = _strtok(no_new_line, ' ');
 
+		/*handle exit */
+		while (bins[b].cmd != NULL)
+		{
+			if (_strcmp(tokens[0], bins->cmd) == 0)
+			{
+				bins->fun(tokens[1]);
+			}
+			b++;
+		}
 		if (_search_path(paths, tokens) == 0)
 		{
 			pid = fork();
