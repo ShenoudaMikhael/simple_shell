@@ -5,7 +5,7 @@
  * @delim: input
  * @tokenCount: input
  * Return: value
-*/
+ */
 char **tokenize(char *str, const char *delim, int *tokenCount)
 {
 
@@ -30,7 +30,7 @@ char **tokenize(char *str, const char *delim, int *tokenCount)
 	{
 		if (count >= 1024)
 		{
-		
+
 			exit(EXIT_FAILURE);
 		}
 		tokens[count] = strdup(token);
