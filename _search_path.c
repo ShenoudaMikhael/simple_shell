@@ -1,5 +1,21 @@
 #include "main.h"
 
+char **_get_paths(char **environ, int path_count)
+{
+	char **paths = NULL;
+	char **env;
+
+	for (env = environ; *env != NULL; env++)
+	{
+		if (_strncmp(*env, "PATH=", 5) == 0)
+		{
+			paths = tokenize(*env + 5, ":", &path_count);
+			break;
+		}
+	}
+	return (paths);
+}
+
 int _search_path(char **paths, char **tokens)
 {
 	int i = 0, command_length = 0, directory_length = 0;
@@ -7,20 +23,21 @@ int _search_path(char **paths, char **tokens)
 
 	if (access(tokens[0], F_OK) == 0)
 	{
-		free(full_cmd);
-		_free_memory(paths);
+
 		return (0);
 	}
 	else
 	{
+
 		command_length = _strlen(tokens[0]);
 
 		for (i = 0; paths[i] != NULL; i++)
 		{
+
 			directory_length = _strlen(paths[i]);
 			full_cmd = malloc(command_length + directory_length + 2);
 			if (full_cmd == NULL)
-				free(full_cmd);
+				return (1);
 			_strcpy(full_cmd, paths[i]);
 			_strcat(full_cmd, "/");
 			_strcat(full_cmd, tokens[0]);
@@ -29,12 +46,14 @@ int _search_path(char **paths, char **tokens)
 			{
 				free(tokens[0]);
 				tokens[0] = full_cmd;
-				_free_memory(paths);
 				return (0);
+			}
+			else
+			{
 			}
 			free(full_cmd);
 		}
 	}
-	_free_memory(paths);
+
 	return (1);
 }

@@ -1,4 +1,4 @@
-
+#include <stdlib.h>
 /**
  * _strlen - get sreing length
  * @s: the string
@@ -6,12 +6,14 @@
  */
 int _strlen(char *s)
 {
-	int len = 0;
+	int count = 0;
 
-	while (s[len] != '\0')
+	if (s == NULL)
 	{
-		len++;
+		return (0);
 	}
+	while (*s++)
+		count++;
 
-	return (len);
+	return (count);
 }

@@ -14,6 +14,5 @@ void _free_memory(char **ptr)
 			free(ptr[i]);
 		}
 
-		free(ptr);
 	}
 }

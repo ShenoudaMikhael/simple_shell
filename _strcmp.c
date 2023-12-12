@@ -1,4 +1,5 @@
 
+#include "main.h"
 /**
  * _strcmp - compare 2 strings
  * @env: the string 1
@@ -18,6 +19,5 @@ int _strcmp(char *env, char *s)
 			break;
 		}
 	}
-
 	return (result);
 }

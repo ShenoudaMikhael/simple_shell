@@ -1,18 +1,8 @@
-#include <stddef.h>
-#include <stdlib.h>
-#include <stdio.h>
 
-char *_nltrim(char *input, size_t size)
+#include "main.h"
+void _nltrim(char *input)
 {
-	int q = 0;
+	int len = _strlen(input);
 
-	char *no_new_line = malloc(size);
-
-	while (input[q] != '\n')
-	{
-		no_new_line[q] = input[q];
-		q++;
-	}
-	no_new_line[q] = '\0';
-	return (no_new_line);
+	input[len - 1] = '\0';
 }
