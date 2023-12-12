@@ -1,4 +1,9 @@
 #include "main.h"
+/**
+ * _noninteractive - function
+ * @argv: input
+ * Return: void
+*/
 void _noninteractive(char *argv)
 {
 	int search_result = -1, tokenCount = 0;

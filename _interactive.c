@@ -1,6 +1,10 @@
 #include "main.h"
 #include <signal.h>
-
+/**
+ * _interactive - function
+ * @argv: input
+ * Return: void
+*/
 void _interactive(char *argv)
 {
 	int search_result = -1, tokenCount = 0;
