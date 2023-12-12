@@ -41,7 +41,8 @@ int main(int argc, char *argv[])
 	char *env = NULL;
 	size_t size = 0;
 	char **tokens = NULL, **paths = NULL;
-
+	char ***holder = malloc(sizeof(char) * 1024);
+	int holderCount = 0;
 	(void)argc;
 
 	if (isatty(STDIN_FILENO))
@@ -63,6 +64,10 @@ int main(int argc, char *argv[])
 			}
 			if (getline_result == -1)
 			{
+
+				for (search_result = 0; search_result < holderCount + 1; search_result++)
+					_free_memory(holder[search_result]);
+				free(holder);
 				free(string);
 
 				exit(EXIT_FAILURE);
@@ -71,7 +76,7 @@ int main(int argc, char *argv[])
 			{
 				string[_strlen(string) - 1] = '\0';
 			}
-			printf("string: %s", string);
+			
 			tokens = tokenize(string, " ", &tokenCount);
 			handle_exit(tokens, status, tokenCount, string);
 			env = handle_environ();
@@ -80,8 +85,7 @@ int main(int argc, char *argv[])
 
 			search_result = _search_path(paths, tokens);
 
-			printf("found result: %i\n", search_result);
-			if (search_result == 0)
+				if (search_result == 0)
 			{
 				child(tokens);
 			}
@@ -89,10 +93,10 @@ int main(int argc, char *argv[])
 			{
 				perror(strcat(argv[0], "1"));
 			}
-			freeTokens(tokens, tokenCount);
-			freeTokens(paths, pathCount);
-			tokens = NULL;
-			paths = NULL;
+			holder[holderCount] = paths;
+			holderCount++;
+			holder[holderCount] = tokens;
+			holderCount++;
 		}
 
 		/* END OF INTERACTIVE*/
@@ -100,7 +104,49 @@ int main(int argc, char *argv[])
 	else
 	{
 
+
+
 		getline_result = getline(&string, &size, stdin);
+
+		if (_strlen(string) == 1)
+		{
+			exit(0);
+		}
+		if (getline_result == -1)
+		{
+
+			for (search_result = 0; search_result < holderCount + 1; search_result++)
+				_free_memory(holder[search_result]);
+			free(holder);
+			free(string);
+
+			exit(EXIT_FAILURE);
+		}
+		if (string[_strlen(string) - 1] == '\n')
+		{
+			string[_strlen(string) - 1] = '\0';
+		}
+		
+		tokens = tokenize(string, " ", &tokenCount);
+		handle_exit(tokens, status, tokenCount, string);
+		env = handle_environ();
+
+		paths = tokenize(env, ":", &pathCount);
+
+		search_result = _search_path(paths, tokens);
+
+		if (search_result == 0)
+		{
+			child(tokens);
+		}
+		else
+		{
+			perror(strcat(argv[0], "1"));
+		}
+		holder[holderCount] = paths;
+		holderCount++;
+		holder[holderCount] = tokens;
+		holderCount++;
 	}
-	return 0;
+	return (0);
 }
