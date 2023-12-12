@@ -1,5 +1,9 @@
 #include "main.h"
-
+/**
+ * child - function
+ * @tokens: input
+ * Return: always 0
+*/
 int child(char **tokens)
 {
 

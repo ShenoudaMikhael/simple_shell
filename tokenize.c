@@ -1,4 +1,11 @@
 #include "main.h"
+/**
+ * tokenize - function
+ * @str: input
+ * @delim: input
+ * @tokenCount: input
+ * Return: value
+*/
 char **tokenize(char *str, const char *delim, int *tokenCount)
 {
 

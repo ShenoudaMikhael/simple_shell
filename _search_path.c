@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * get_paths - function
+ * _get_paths - function
  * @environ: environment
  * @path_count: count of path
  * Return: value
@@ -21,7 +21,7 @@ char **_get_paths(char **environ, int path_count)
 	return (paths);
 }
 /**
- * search_path - function
+ * _search_path - function
  * @paths: input
  * @tokens: input
  * Return: always 1

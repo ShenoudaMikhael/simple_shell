@@ -1,8 +1,11 @@
-#include <stddef.h>
 #include "main.h"
+/**
+ * _getpath - function
+ * @environ: input
+ * Return: value
+*/
 char **_getpath(char **environ)
 {
-
 	char **paths = NULL;
 	char *path = NULL;
 	int tokenCount;
