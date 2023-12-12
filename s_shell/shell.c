@@ -53,13 +53,13 @@ int main(int argc, char **argv)
                 if (child_pid == 0)
                 {
                     if (strcmp(token, "env") == 0)
-                {
-                    while (env)
                     {
-                        printf("%s\n", *env);
-                        env++;
+                        while (env)
+                        {
+                            printf("%s\n", *env);
+                            env++;
+                        }
                     }
-                }
                 }
                 else
                 {
