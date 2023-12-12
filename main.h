@@ -49,4 +49,6 @@ char *_handle_environ();
 void _noninteractive(char *argv);
 void _handle_exit(char **tokens, int status, int tokenCount, char *string);
 void _handleCtrlC(int signum);
+void _interactive(char *argv);
+
 #endif
