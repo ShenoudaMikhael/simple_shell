@@ -1,12 +1,23 @@
 #include "main.h"
 #include <signal.h>
-
+/**
+ * _handleCtrlC - function
+ * @signum: input
+ * Return: void
+*/
 void _handleCtrlC(int signum)
 {
 	if (signum == 2)
 		exit(EXIT_SUCCESS);
 }
-
+/**
+ * _handle_exit - function
+ * @tokens: input
+ * @status: input
+ * @tokenCount: input
+ * @string: input
+ * Return: void
+*/
 void _handle_exit(char **tokens, int status, int tokenCount, char *string)
 {
 	if (tokens != NULL && _strcmp(tokens[0], "exit") == 0)
@@ -19,7 +30,10 @@ void _handle_exit(char **tokens, int status, int tokenCount, char *string)
 		exit(status);
 	}
 }
-
+/**
+ * _handle_environ - function
+ * Return: NULL
+*/
 char *_handle_environ()
 {
 	char **env;
