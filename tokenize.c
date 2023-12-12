@@ -30,7 +30,7 @@ char **tokenize(char *str, const char *delim, int *tokenCount)
 	{
 		if (count >= 1024)
 		{
-			fprintf(stderr, "Exceeded maximum token count\n");
+		
 			exit(EXIT_FAILURE);
 		}
 		tokens[count] = strdup(token);

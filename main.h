@@ -51,4 +51,7 @@ void _handle_exit(char **tokens, int status, int tokenCount, char *string);
 void _handleCtrlC(int signum);
 void _interactive(char *argv);
 
+int _sprintf(char *buffer, const char *format, ...);
+
+
 #endif
