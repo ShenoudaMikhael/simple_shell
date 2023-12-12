@@ -44,5 +44,9 @@ int _eof(int getline_result, char *string,
 		 char **paths);
 
 int child(char **tokens);
+char *_handle_environ();
 
+void _noninteractive(char *argv);
+void _handle_exit(char **tokens, int status, int tokenCount, char *string);
+void _handleCtrlC(int signum);
 #endif
