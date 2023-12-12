@@ -1,4 +1,10 @@
 #include "main.h"
+/**
+ * my_strtok - function
+ * @str: string
+ * @delim: delimiter
+ * Return: token
+*/
 char *my_strtok(char *str, const char *delim)
 {
 	static char *lastToken;
@@ -9,7 +15,6 @@ char *my_strtok(char *str, const char *delim)
 	{
 		lastToken = str;
 	}
-
 	if (lastToken == NULL)
 	{
 		return (NULL);
@@ -38,6 +43,5 @@ char *my_strtok(char *str, const char *delim)
 	{
 		lastToken = NULL;
 	}
-
 	return (token);
 }

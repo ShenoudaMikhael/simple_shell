@@ -1,3 +1,9 @@
+/**
+ * strncmp - function
+ * @s1: input
+ * @s2: input
+ * @n: input
+*/
 int _strncmp(const char *s1, const char *s2, int n)
 {
 	while (n > 0 && (*s1 != '\0' || *s2 != '\0'))
@@ -10,6 +16,5 @@ int _strncmp(const char *s1, const char *s2, int n)
 		s2++;
 		n--;
 	}
-
 	return (0);
 }

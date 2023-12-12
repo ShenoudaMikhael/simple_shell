@@ -12,7 +12,6 @@ int _strcmp(char *env, char *s)
 
 	for (i = 0; env[i] && s[i]; i++)
 	{
-
 		if (env[i] != s[i])
 		{
 			result = 1;
