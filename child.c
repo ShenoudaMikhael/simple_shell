@@ -16,6 +16,7 @@ int child(char **tokens)
 	{
 
 		ex_result = execve(tokens[0], tokens, environ);
+
 		if (ex_result == -1)
 		{
 			perror("AA");
@@ -25,7 +26,6 @@ int child(char **tokens)
 	else
 	{
 		waitpid(pid, &status, 0);
-		printf("HERE");
 		if (WIFEXITED(status))
 		{
 		}
