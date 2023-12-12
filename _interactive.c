@@ -38,7 +38,7 @@ void _interactive(char *argv)
 		if (search_result == 0)
 			child(tokens);
 		else
-			perror("error:");
+			perror(argv);
 		holder[holderCount] = paths, holderCount++;
 		holder[holderCount] = tokens, holderCount++;
 	}
