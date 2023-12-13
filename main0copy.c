@@ -6,19 +6,19 @@
  * @argv: args
  * Return: int
  */
-int main(int argc, char *argv[], char *environ[])
+int main(int argc, char *argv[])
 {
 
 	(void)argc;
 
 	if (isatty(STDIN_FILENO))
 	{
-		_interactive(argv[0], environ);
+		_interactive(argv);
 
 		/* END OF INTERACTIVE*/
 	}
 	else
-		_noninteractive(argv[0], environ);
+		_noninteractive(argv);
 
 	return (0);
 }

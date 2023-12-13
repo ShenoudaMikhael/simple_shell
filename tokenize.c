@@ -12,16 +12,19 @@ char **tokenize(char *str, const char *delim, int *tokenCount)
 	const char *d = delim;
 	char *token;
 	int count = 0;
-	char *strCopy = strdup(str);
+	char *strCopy = _strdup(str);
 	char **tokens = malloc(1024 * sizeof(char *));
 
 	if (tokens == NULL)
 	{
+		free(str);
 		perror("Error allocating memory");
 		exit(EXIT_FAILURE);
 	}
 	if (strCopy == NULL)
 	{
+		free(str);
+
 		perror("Error duplicating string");
 		exit(EXIT_FAILURE);
 	}
@@ -30,12 +33,15 @@ char **tokenize(char *str, const char *delim, int *tokenCount)
 	{
 		if (count >= 1024)
 		{
-
+			free(str);
+			free(strCopy);
 			exit(EXIT_FAILURE);
 		}
-		tokens[count] = strdup(token);
+		tokens[count] = _strdup(token);
 		if (tokens[count] == NULL)
 		{
+			free(str);
+			free(strCopy);
 			perror("Error duplicating token");
 			exit(EXIT_FAILURE);
 		}
@@ -44,7 +50,6 @@ char **tokenize(char *str, const char *delim, int *tokenCount)
 	}
 
 	free(strCopy);
-
 	*tokenCount = count;
 
 	return (tokens);

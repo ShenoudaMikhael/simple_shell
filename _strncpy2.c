@@ -18,6 +18,5 @@ char *_strncpy2(char *dest, char *src, int start, int n)
 		dest[i] = src[i];
 		i++;
 	}
-	printf("%s\n", dest);
 	return (dest);
 }

@@ -14,6 +14,8 @@ typedef struct bins
 	int (*fun)(char *);
 } built_ins;
 
+extern char **environ;
+
 void _free_memory(char **paths);
 
 int _strlen(char *s);
@@ -33,22 +35,24 @@ char *_strncpy2(char *dest, char *src, int start, int n);
 
 char *my_strtok(char *str, const char *delim);
 char **tokenize(char *str, const char *delim, int *tokenCount);
+char **tokenizer(char *line, char *delim);
 
-char **_getpath(char **environ);
+char **_getpath();
 
 void freeTokens(char **tokens, int tokenCount);
 
 int _eof(int getline_result, char *string,
 		 char **paths);
 
-int child(char **tokens, char *environ[]);
+int child(char **tokens, char **argv);
 char *_handle_environ();
 
-void _noninteractive(char *argv, char *environ[]);
+void _noninteractive(char **argv);
 void _handle_exit(char **tokens, int status, int tokenCount, char *string);
 void _handleCtrlC(int signum);
-void _interactive(char *argv, char *environ[]);
+void _interactive(char **argv);
 
 int _sprintf(char *buffer, const char *format, ...);
+char *_strdup(const char *str);
 
 #endif

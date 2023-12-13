@@ -3,14 +3,15 @@
  * child - function
  * @tokens: input
  * Return: always 0
-*/
-int child(char **tokens,char **environ)
+ */
+int child(char **tokens, char **environ)
 {
 
 	pid_t pid;
 	int status, ex_result;
 
 	pid = fork();
+
 	if (pid == -1)
 	{
 		perror("AA");
@@ -18,7 +19,6 @@ int child(char **tokens,char **environ)
 	}
 	if (pid == 0)
 	{
-
 		ex_result = execve(tokens[0], tokens, environ);
 
 		if (ex_result == -1)
