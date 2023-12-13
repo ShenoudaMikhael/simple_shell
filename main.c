@@ -48,6 +48,7 @@ int main(int argc, char *argv[])
 		}
 
 		command = _tokenizer(string, " \t\n");
+
 		if (!command)
 			continue;
 		paths = _get_paths(environ);
@@ -57,8 +58,9 @@ int main(int argc, char *argv[])
 			status = _excute(command, argv[0], &status);
 		else
 			perror(argv[0]);
-		_free_memory(command);
 		free(paths);
+		free(command);
+		free(string);
 	}
 	return (0);
 }

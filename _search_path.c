@@ -50,7 +50,7 @@ int _search_path(char **paths, char **tokens)
 
 			directory_length = _strlen(paths[i]);
 
-			full_cmd = malloc(command_length + directory_length + 2);
+			full_cmd = malloc(sizeof(char *) * (command_length + directory_length + 2));
 
 			if (full_cmd == NULL)
 				return (1);
@@ -61,16 +61,20 @@ int _search_path(char **paths, char **tokens)
 
 			if (access(full_cmd, F_OK & R_OK) == 0)
 			{
-				free(tokens[0]);
-				tokens[0] = full_cmd;
+				tokens[0] = malloc(strlen(full_cmd) + 1 * sizeof(char *));
+				_strcpy(tokens[0], full_cmd);
+				free(full_cmd);
+				full_cmd = NULL;
 				return (0);
 			}
 			else
 			{
 			}
 			free(full_cmd);
+
 			full_cmd = NULL;
 		}
 	}
+
 	return (127);
 }
