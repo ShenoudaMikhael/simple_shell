@@ -4,7 +4,7 @@
  * @tokens: input
  * Return: always 0
 */
-int child(char **tokens)
+int child(char **tokens,char **environ)
 {
 
 	pid_t pid;

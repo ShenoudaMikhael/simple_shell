@@ -3,8 +3,8 @@
  * _noninteractive - function
  * @argv: input
  * Return: void
-*/
-void _noninteractive(char *argv)
+ */
+void _noninteractive(char *argv, char *environ[])
 {
 	int search_result = -1, tokenCount = 0;
 	int pathCount = 0, status = 0, getline_result = 0;
@@ -38,7 +38,7 @@ void _noninteractive(char *argv)
 	paths = tokenize(env, ":", &pathCount);
 	search_result = _search_path(paths, tokens);
 	if (search_result == 0)
-		child(tokens);
+		child(tokens, environ);
 	else
 		perror(strcat(argv, "1"));
 	holder[holderCount] = paths;

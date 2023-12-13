@@ -4,8 +4,8 @@
  * _interactive - function
  * @argv: input
  * Return: void
-*/
-void _interactive(char *argv)
+ */
+void _interactive(char *argv, char *environ[])
 {
 	int search_result = -1, tokenCount = 0;
 	int pathCount = 0, status = 0, getline_result = 0;
@@ -40,7 +40,7 @@ void _interactive(char *argv)
 		paths = tokenize(env, ":", &pathCount);
 		search_result = _search_path(paths, tokens);
 		if (search_result == 0)
-			child(tokens);
+			child(tokens, environ);
 		else
 			perror(argv);
 		holder[holderCount] = paths, holderCount++;

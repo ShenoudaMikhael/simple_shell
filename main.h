@@ -14,8 +14,6 @@ typedef struct bins
 	int (*fun)(char *);
 } built_ins;
 
-extern char **environ;
-
 void _free_memory(char **paths);
 
 int _strlen(char *s);
@@ -43,15 +41,14 @@ void freeTokens(char **tokens, int tokenCount);
 int _eof(int getline_result, char *string,
 		 char **paths);
 
-int child(char **tokens);
+int child(char **tokens, char *environ[]);
 char *_handle_environ();
 
-void _noninteractive(char *argv);
+void _noninteractive(char *argv, char *environ[]);
 void _handle_exit(char **tokens, int status, int tokenCount, char *string);
 void _handleCtrlC(int signum);
-void _interactive(char *argv);
+void _interactive(char *argv, char *environ[]);
 
 int _sprintf(char *buffer, const char *format, ...);
-
 
 #endif
