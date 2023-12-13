@@ -28,7 +28,7 @@ char **_tokenize(char *str, const char *delim, int *tokenCount)
 		perror("Error duplicating string");
 		exit(EXIT_FAILURE);
 	}
-	token = strtok(strCopy, d);
+	token = _strtok(strCopy, d);
 	while (token != NULL)
 	{
 		if (count >= 1024)
@@ -46,7 +46,7 @@ char **_tokenize(char *str, const char *delim, int *tokenCount)
 			exit(EXIT_FAILURE);
 		}
 		count++;
-		token = strtok(NULL, d);
+		token = _strtok(NULL, d);
 	}
 
 	free(strCopy);

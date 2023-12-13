@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * my_strtok - function
+ * _strtok - function
  * @str: string
  * @delim: delimiter
  * Return: token
