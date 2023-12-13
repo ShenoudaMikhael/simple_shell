@@ -16,7 +16,7 @@ char *_strtok(char *str, const char *delim);
 
 char **_tokenizer(char *line, char *delim);
 char **_tokenize(char *str, const char *delim, int *tokenCount);
-char **_get_paths(char **environ, char **paths);
+char **_get_paths(char **environ);
 void _freeTokens(char **tokens, int tokenCount);
 
 int _strcmp(char *env, char *s);

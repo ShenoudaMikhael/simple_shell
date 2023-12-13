@@ -50,14 +50,15 @@ int main(int argc, char *argv[])
 		command = _tokenizer(string, " \t\n");
 		if (!command)
 			continue;
-		_get_paths(environ, paths);
+		paths = _get_paths(environ);
+
 		status = _search_path(paths, command);
 		if (status == 0)
 			status = _excute(command, argv[0], &status);
 		else
 			perror(argv[0]);
 		_free_memory(command);
-		_free_memory(paths);
+		free(paths);
 	}
 	return (0);
 }

@@ -5,10 +5,11 @@
  * @path_count: count of path
  * Return: value
  */
-char **_get_paths(char **environ, char **paths)
+char **_get_paths(char **environ)
 {
 	int i = 0;
 	char *path = NULL;
+	char **paths = NULL;
 
 	for (; environ[i] != NULL; i++)
 	{
@@ -37,17 +38,20 @@ int _search_path(char **paths, char **tokens)
 
 	if (access(tokens[0], F_OK & R_OK) == 0)
 	{
-
 		return (0);
 	}
 	else
 	{
+
 		command_length = _strlen(tokens[0]);
 
 		for (i = 0; paths[i] != NULL; i++)
 		{
+
 			directory_length = _strlen(paths[i]);
+
 			full_cmd = malloc(command_length + directory_length + 2);
+
 			if (full_cmd == NULL)
 				return (1);
 			_strcpy(full_cmd, paths[i]);
