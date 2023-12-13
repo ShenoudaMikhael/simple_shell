@@ -41,9 +41,9 @@ void _interactive(char **argv)
 		env = _handle_environ();
 
 		paths = tokenize(env, ":", &pathCount);
-		search_result = _search_path(paths, tokens);
+		status = _search_path(paths, tokens);
 
-		if (search_result == 0)
+		if (status == 0)
 			child(tokens, environ);
 		else
 			perror(argv[0]);

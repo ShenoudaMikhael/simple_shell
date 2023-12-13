@@ -4,7 +4,7 @@
  * @environ: environment
  * @path_count: count of path
  * Return: value
-*/
+ */
 char **_get_paths(char **environ, int path_count)
 {
 	char **paths = NULL;
@@ -25,7 +25,7 @@ char **_get_paths(char **environ, int path_count)
  * @paths: input
  * @tokens: input
  * Return: always 1
-*/
+ */
 int _search_path(char **paths, char **tokens)
 {
 	int i = 0, command_length = 0, directory_length = 0;
@@ -61,5 +61,5 @@ int _search_path(char **paths, char **tokens)
 			free(full_cmd);
 		}
 	}
-	return (1);
+	return (127);
 }
