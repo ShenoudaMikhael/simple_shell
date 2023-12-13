@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * freeTokens - function
+ * _freeTokens - free 2d array memory
  * @tokens: input
  * @tokenCount: input
  * Return: input

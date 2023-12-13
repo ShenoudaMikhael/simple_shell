@@ -2,7 +2,6 @@
 /**
  * _get_paths - function
  * @environ: environment
- * @path_count: count of path
  * Return: value
  */
 char **_get_paths(char **environ)
@@ -42,16 +41,11 @@ int _search_path(char **paths, char **tokens)
 	}
 	else
 	{
-
 		command_length = _strlen(tokens[0]);
-
 		for (i = 0; paths[i] != NULL; i++)
 		{
-
 			directory_length = _strlen(paths[i]);
-
 			full_cmd = malloc(sizeof(char *) * (command_length + directory_length + 2));
-
 			if (full_cmd == NULL)
 				return (1);
 			_strcpy(full_cmd, paths[i]);

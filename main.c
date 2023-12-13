@@ -2,7 +2,8 @@
 #include <signal.h>
 
 /**
- * _get_line
+ * _read_line - get line from stdin
+ * Return: char *
  */
 char *_read_line()
 {
@@ -20,6 +21,8 @@ char *_read_line()
 			free(string);
 		return (NULL);
 	}
+	if (_strcmp(string, "exit") == 0)
+		free(string), exit(0);
 	return (string);
 }
 

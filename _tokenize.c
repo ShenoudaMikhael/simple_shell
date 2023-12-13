@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * tokenize - function
+ * _tokenize - collect tokens in array
  * @str: input
  * @delim: input
  * @tokenCount: input
@@ -17,15 +17,12 @@ char **_tokenize(char *str, const char *delim, int *tokenCount)
 
 	if (tokens == NULL)
 	{
-		free(str);
-		perror("Error allocating memory");
+		free(str), perror("Error allocating memory");
 		exit(EXIT_FAILURE);
 	}
 	if (strCopy == NULL)
 	{
-		free(str);
-
-		perror("Error duplicating string");
+		free(str), perror("Error duplicating string");
 		exit(EXIT_FAILURE);
 	}
 	token = _strtok(strCopy, d);
@@ -33,25 +30,21 @@ char **_tokenize(char *str, const char *delim, int *tokenCount)
 	{
 		if (count >= 1024)
 		{
-			free(str);
-			free(strCopy);
+			free(str), free(strCopy);
 			exit(EXIT_FAILURE);
 		}
 		tokens[count] = _strdup(token);
 		if (tokens[count] == NULL)
 		{
-			free(str);
-			free(strCopy);
+			free(str), free(strCopy);
 			perror("Error duplicating token");
 			exit(EXIT_FAILURE);
 		}
 		count++;
 		token = _strtok(NULL, d);
 	}
-
 	free(strCopy);
 	strCopy = NULL;
 	*tokenCount = count;
-
 	return (tokens);
 }

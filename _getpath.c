@@ -1,7 +1,6 @@
 #include "main.h"
 /**
- * _getpath - function
- * @environ: input
+ * _getpath - function to get path variable
  * Return: value
 */
 char **_getpath()
