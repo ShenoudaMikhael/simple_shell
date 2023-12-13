@@ -14,7 +14,8 @@ void _free_memory(char **ptr)
 
 	for (i = 0; ptr[i] != NULL; i++)
 	{
-		free(ptr[i]);
+		if (ptr[i])
+			free(ptr[i]);
 		ptr[i] = NULL;
 	}
 	free(ptr);

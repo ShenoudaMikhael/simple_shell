@@ -4,7 +4,7 @@
  * @line: line input
  * @delim: delimiter
  * Return: array or null
-*/
+ */
 char **_tokenizer(char *line, char *delim)
 {
 	char *token = NULL, *tmp = NULL;
