@@ -6,7 +6,7 @@
  * @tokenCount: input
  * Return: value
  */
-char **tokenize(char *str, const char *delim, int *tokenCount)
+char **_tokenize(char *str, const char *delim, int *tokenCount)
 {
 
 	const char *d = delim;
@@ -28,7 +28,7 @@ char **tokenize(char *str, const char *delim, int *tokenCount)
 		perror("Error duplicating string");
 		exit(EXIT_FAILURE);
 	}
-	token = my_strtok(strCopy, d);
+	token = strtok(strCopy, d);
 	while (token != NULL)
 	{
 		if (count >= 1024)
@@ -46,7 +46,7 @@ char **tokenize(char *str, const char *delim, int *tokenCount)
 			exit(EXIT_FAILURE);
 		}
 		count++;
-		token = my_strtok(NULL, d);
+		token = strtok(NULL, d);
 	}
 
 	free(strCopy);

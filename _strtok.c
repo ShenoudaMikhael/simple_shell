@@ -5,7 +5,7 @@
  * @delim: delimiter
  * Return: token
 */
-char *my_strtok(char *str, const char *delim)
+char *_strtok(char *str, const char *delim)
 {
 	static char *lastToken;
 	char *token;

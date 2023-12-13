@@ -5,7 +5,7 @@
  * @tokenCount: input
  * Return: input
 */
-void freeTokens(char **tokens, int tokenCount)
+void _freeTokens(char **tokens, int tokenCount)
 {
 	int i;
 

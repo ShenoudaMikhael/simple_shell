@@ -8,51 +8,22 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 
-typedef struct bins
-{
-	char *cmd;
-	int (*fun)(char *);
-} built_ins;
-
 extern char **environ;
-
-void _free_memory(char **paths);
-
-int _strlen(char *s);
-int _strcmp(char *env, char *s);
-int _search_path(char **paths, char **tokens);
-char **_get_paths(char **environ, int pathCount);
-
-int _atoi(char *s);
-
-void _nltrim(char *input);
+char *_strdup(const char *str);
 char *_strcat(char *dest, char *src);
+char *_strcpy(char *dest, char *src);
+char *_strtok(char *str, const char *delim);
+
+char **_tokenizer(char *line, char *delim);
+char **_tokenize(char *str, const char *delim, int *tokenCount);
+void _freeTokens(char **tokens, int tokenCount);
+
+int _strcmp(char *env, char *s);
+int _strlen(char *s);
 int _strncmp(const char *s1, const char *s2, int n);
 
-char *_strncpy(char *dest, char *src, int n);
-char *_strcpy(char *dest, char *src);
-char *_strncpy2(char *dest, char *src, int start, int n);
+int _excute(char **command, char *argv);
 
-char *my_strtok(char *str, const char *delim);
-char **tokenize(char *str, const char *delim, int *tokenCount);
-char **tokenizer(char *line, char *delim);
-
-char **_getpath();
-
-void freeTokens(char **tokens, int tokenCount);
-
-int _eof(int getline_result, char *string,
-		 char **paths);
-
-int child(char **tokens, char **argv);
-char *_handle_environ();
-
-void _noninteractive(char **argv);
-void _handle_exit(char **tokens, int status, int tokenCount, char *string);
-void _handleCtrlC(int signum);
-void _interactive(char **argv, int status);
-
-int _sprintf(char *buffer, const char *format, ...);
-char *_strdup(const char *str);
+void _free_memory(char **ptr);
 
 #endif

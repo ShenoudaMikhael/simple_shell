@@ -1,18 +1,23 @@
 #include "main.h"
 
-char **tokenizer(char *line, char *delim)
+char **_tokenizer(char *line, char *delim)
 {
     char *token = NULL, *tmp = NULL;
-
     char **cmd = NULL;
-
     int cpt = 0, i = 0;
-
 
     if (!line)
         return (NULL);
     tmp = _strdup(line);
+
     token = strtok(tmp, delim);
+    if (token == NULL)
+    {
+
+        free(line), line = NULL;
+        free(tmp), tmp = NULL;
+        return (NULL);
+    }
     while (token)
     {
         cpt++;
@@ -21,9 +26,10 @@ char **tokenizer(char *line, char *delim)
 
     free(tmp), tmp = NULL;
 
-    cmd = malloc(sizeof(char *) * (cpt + 1));
+    cmd = malloc(sizeof(char *) * (cpt + 5));
     if (!cmd)
     {
+
         free(line), line = NULL;
         return (NULL);
     }
@@ -35,7 +41,7 @@ char **tokenizer(char *line, char *delim)
         token = strtok(NULL, delim);
         i++;
     }
-    free(line);
     cmd[i] = NULL;
+
     return (cmd);
 }
