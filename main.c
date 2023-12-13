@@ -48,12 +48,18 @@ int main(int argc, char *argv[])
 
 			return (status);
 		}
-		if (_strcmp(string, "exit") == 0)
-			free(string), exit(status);
+
 		command = _tokenizer(string, " \t\n");
 
 		if (!command)
 			continue;
+		if (_strcmp(command[0], "exit") == 0)
+		{
+			if (command[1] && _atoi(command[1]) > 0)
+				status = _atoi(command[1]);
+			free(paths), paths = NULL, free(command);
+			free(string), exit(status);
+		}
 		paths = _get_paths(environ);
 
 		status = _search_path(paths, command);
@@ -61,9 +67,7 @@ int main(int argc, char *argv[])
 			status = _excute(command, argv[0], &status);
 		else
 			perror(argv[0]);
-		free(paths);
-		free(command);
-		free(string);
+		free(paths), paths = NULL, free(command), free(string);
 	}
 	return (0);
 }

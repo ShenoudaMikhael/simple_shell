@@ -1,6 +1,10 @@
 #include "main.h"
 /**
- *
+ * _excute - excute command on child and wait for process
+ * @command: ptr command
+ * @argv: shell name
+ * @status: int to set status code
+ * Return: int status
  */
 int _excute(char **command, char *argv, int *status)
 {
