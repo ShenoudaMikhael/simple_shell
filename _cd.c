@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /***/
 extern char **environ;
 int main(int argc, char *argv[])
@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
     size_t size = 0;
     ssize_t read;
     const char *delim = " \n";
+    int num_tk = 0;
     char *token;
     int i;
     pid_t child_pid;
@@ -31,7 +32,22 @@ int main(int argc, char *argv[])
                 return (-1);
             }
             string_cpy = malloc(sizeof(char) * read);
+            if (string_cpy == NULL)
+            {
+                perror("memory allocation error");
+                return (-1);
+            }
             strcpy(string_cpy, string);
+
+            token = strtok(string, delim);
+            while (token != NULL)
+            {
+                num_tk++;
+                token = strtok(NULL, delim);
+            }
+            num_tk++;
+
+            argv = malloc(sizeof(char *) * num_tk);
             token = strtok(string_cpy, delim);
             for (i = 0; token != NULL; i++)
             {
@@ -91,33 +107,21 @@ int main(int argc, char *argv[])
                     c_dir = n_dir;
                     chdir(c_dir);
                 }
-                if (n_dir != NULL && (strcmp(n_dir, "-") != 0))
+                else if (n_dir != NULL && (strcmp(n_dir, "-") != 0))
                 {
                     strcat(c_dir, "/");
                     strcat(c_dir, n_dir);
                     strcat(c_dir, "\0");
                     chdir(c_dir);
                 }
-                if (strcmp(n_dir, "-") == 0)
+                else if (strcmp(n_dir, "-") == 0)
                 {
                     n_dir = p_dir;
                     chdir(n_dir);
                 }
             }
             argv[i] = NULL;
-            child_pid = fork();
-            if (child_pid == 0)
-            {
-                execmd(argv);
-                exit(0);
-            }
-            else
-            {
-                wait(NULL);
-            }
         }
     }
-    free(string_cpy);
-    free(string);
     return (0);
 }

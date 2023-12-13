@@ -53,5 +53,7 @@ void _interactive(char *argv);
 
 int _sprintf(char *buffer, const char *format, ...);
 
+void _cd(char *argv[]);
+
 
 #endif

@@ -9,3 +9,4 @@
 void execmd(char **argv);
 char *get_path(char *command);
 int main(int ac, char **argv);
+void _cd(char *argv[]);
