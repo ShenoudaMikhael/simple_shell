@@ -50,6 +50,7 @@ char **_tokenize(char *str, const char *delim, int *tokenCount)
 	}
 
 	free(strCopy);
+	strCopy = NULL;
 	*tokenCount = count;
 
 	return (tokens);

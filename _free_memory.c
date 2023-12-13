@@ -9,15 +9,15 @@ void _free_memory(char **ptr)
 
 	int i;
 
+	if (!ptr)
+		return;
 
-	if (ptr != NULL)
+	for (i = 0; ptr[i] != NULL; i++)
 	{
-
-		for (i = 0; ptr[i] != NULL; i++)
-
-			free(ptr[i]);
-
-		free(ptr);
+		free(ptr[i]);
+		ptr[i] = NULL;
 	}
+	free(ptr);
+
 	ptr = NULL;
 }

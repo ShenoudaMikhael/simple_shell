@@ -26,7 +26,7 @@ char **_tokenizer(char *line, char *delim)
 
     free(tmp), tmp = NULL;
 
-    cmd = malloc(sizeof(char *) * (cpt + 5));
+    cmd = malloc(sizeof(char *) * (cpt + 1));
     if (!cmd)
     {
 
@@ -42,6 +42,5 @@ char **_tokenizer(char *line, char *delim)
         i++;
     }
     cmd[i] = NULL;
-
     return (cmd);
 }

@@ -31,10 +31,11 @@ char *_read_line()
  */
 int main(int argc, char *argv[])
 {
-	int status = 0, tokenCount = 0, i = 0;
-	char *string = NULL, **command;
+	int status = 0;
+	char *string = NULL, **command = NULL;
+	char **paths = NULL;
 	(void)argc;
-	(void)argv;
+
 	while (1)
 	{
 		string = _read_line();
@@ -42,17 +43,21 @@ int main(int argc, char *argv[])
 		{
 			if (isatty(STDIN_FILENO))
 				write(STDOUT_FILENO, "\n", 1);
+
 			return (status);
 		}
-		command = _tokenize(string, " \t\n", &tokenCount);
-		if (!tokenCount)
-			continue;
-		printf("start path search %i  %i\n", tokenCount, i);
 
-		printf("End Path search\n");
-		status = _excute(command,argv[0]);
-		_freeTokens(command, tokenCount);
-		free(string);
+		command = _tokenizer(string, " \t\n");
+		if (!command)
+			continue;
+		_get_paths(environ, paths);
+		status = _search_path(paths, command);
+		if (status == 0)
+			status = _excute(command, argv[0], &status);
+		else
+			perror(argv[0]);
+		_free_memory(command);
+		_free_memory(paths);
 	}
-	return (status);
+	return (0);
 }
