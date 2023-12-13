@@ -55,8 +55,20 @@ int main(int argc, char *argv[])
 			continue;
 		if (_strcmp(command[0], "exit") == 0)
 		{
-			if (command[1] && _atoi(command[1]) > 0)
-				status = _atoi(command[1]);
+			if (command[1])
+			{
+				if (_atoi(command[1]) > 0)
+					status = _atoi(command[1]);
+
+				else
+				{
+					string = _strdup(argv[0]);
+					_strcat(string, " Illegal number:");
+					_strcat(string, command[1]), string[_strlen(string)] = '\n';
+					write(STDERR_FILENO, string, _strlen(string));
+					continue;
+				}
+			}
 			free(paths), paths = NULL, free(command);
 			free(string), exit(status);
 		}
