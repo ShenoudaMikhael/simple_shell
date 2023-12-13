@@ -1,7 +1,7 @@
 #include "main.h"
 /**
- * 
-*/
+ *
+ */
 int _excute(char **command, char *argv, int *status)
 {
 	pid_t pid;
@@ -12,13 +12,14 @@ int _excute(char **command, char *argv, int *status)
 
 		if (execve(command[0], command, environ) == -1)
 		{
-
 			perror(argv);
 		}
 	}
 	else
 	{
 		waitpid(pid, status, 0);
+		if (WEXITSTATUS(*status) != 0)
+			*status = WEXITSTATUS(*status);
 	}
 	return (*status);
 }

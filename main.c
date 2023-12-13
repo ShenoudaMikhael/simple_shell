@@ -21,8 +21,7 @@ char *_read_line()
 			free(string);
 		return (NULL);
 	}
-	if (_strcmp(string, "exit") == 0)
-		free(string), exit(0);
+
 	return (string);
 }
 
@@ -49,7 +48,8 @@ int main(int argc, char *argv[])
 
 			return (status);
 		}
-
+		if (_strcmp(string, "exit") == 0)
+			free(string), exit(status);
 		command = _tokenizer(string, " \t\n");
 
 		if (!command)
