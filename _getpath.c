@@ -4,7 +4,7 @@
  * @environ: input
  * Return: value
 */
-char **_getpath(char **environ)
+char **_getpath()
 {
 	char **paths = NULL;
 	char *path = NULL;

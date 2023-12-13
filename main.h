@@ -35,25 +35,30 @@ char *_strncpy2(char *dest, char *src, int start, int n);
 
 char *my_strtok(char *str, const char *delim);
 char **tokenize(char *str, const char *delim, int *tokenCount);
+char **tokenizer(char *line, char *delim);
 
-char **_getpath(char **environ);
+char **_getpath();
 
 void freeTokens(char **tokens, int tokenCount);
 
 int _eof(int getline_result, char *string,
 		 char **paths);
 
-int child(char **tokens);
+int child(char **tokens, char **argv);
 char *_handle_environ();
 
-void _noninteractive(char *argv);
+void _noninteractive(char **argv);
 void _handle_exit(char **tokens, int status, int tokenCount, char *string);
 void _handleCtrlC(int signum);
-void _interactive(char *argv);
+void _interactive(char **argv, int status);
 
 int _sprintf(char *buffer, const char *format, ...);
+<<<<<<< HEAD
 
 void _cd(char *argv[]);
 
+=======
+char *_strdup(const char *str);
+>>>>>>> 439706932efa7a6efe3ac7a75cfa2f89de577cc7
 
 #endif
