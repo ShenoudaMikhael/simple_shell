@@ -3,12 +3,13 @@
 /**
  * _interactive - function
  * @argv: input
+ * @status: exit status
  * Return: void
  */
-void _interactive(char **argv)
+void _interactive(char **argv, int status)
 {
 	int search_result = -1, tokenCount = 0;
-	int pathCount = 0, status = 0, getline_result = 0;
+	int pathCount = 0, getline_result = 0;
 	char *string = NULL, *env = NULL;
 	size_t size = 0;
 	char **tokens = NULL, **paths = NULL;
@@ -31,7 +32,7 @@ void _interactive(char **argv)
 				_free_memory(holder[search_result]);
 			write(1, "\n", 1);
 
-			free(holder), free(string), exit(0);
+			free(holder), free(string), exit(status);
 		}
 		if (string[_strlen(string) - 1] == '\n')
 			string[_strlen(string) - 1] = '\0';

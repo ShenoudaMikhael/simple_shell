@@ -8,12 +8,13 @@
  */
 int main(int argc, char *argv[])
 {
+	int status = 0;
 
 	(void)argc;
 
 	if (isatty(STDIN_FILENO))
 	{
-		_interactive(argv);
+		_interactive(argv, status);
 
 		/* END OF INTERACTIVE*/
 	}
