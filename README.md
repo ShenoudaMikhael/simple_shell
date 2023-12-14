@@ -5,6 +5,8 @@ Simple Shell is a Unix shell program written in C by Stephen Brennan. It is a mi
 
 The shell is a computer program that provides a command-line interface for users to interact with the operating system. It allows users to execute commands, manage files, and automate tasks.
 
+Simple shells are often used by developers and system administrators for scripting tasks. They can also be used by users who want a more powerful and flexible way to interact with their operating system.
+
 ## ./hsh
 
 ```c
