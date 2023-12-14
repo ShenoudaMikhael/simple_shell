@@ -7,7 +7,7 @@
 */
 int main(int argc, char **argv)
 {
-    char *prompt = "~bella$ ";
+    char *prompt = "~shell$ ";
     char *string = NULL, *string_cpy = NULL;
     size_t size = 0;
     ssize_t read;
