@@ -54,7 +54,6 @@ int main(int argc, char **argv)
             {
                 argv[i] = malloc(sizeof(char) * strlen(token));
                 strcpy(argv[i], token);
-
                 child_pid = fork();
                 if (child_pid == 0)
                 {
@@ -79,7 +78,6 @@ int main(int argc, char **argv)
             if (child_pid == 0)
             {
                 execmd(argv);
-
                 exit(0);
             }
             else
@@ -133,7 +131,6 @@ int main(int argc, char **argv)
             wait(NULL);
         }
     }
-
     free(string_cpy);
     free(string);
     return (0);
