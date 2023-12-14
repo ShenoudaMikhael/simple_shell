@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 - access: the function that forcefully terminates the current program and transfers the control to the operating system to exit the program.
 - free: the function that forcefully terminates the current program and transfers the control to the operating system to exit the program.
 - malloc: allocates memory and leaves the memory uninitialized.
-
+- fork and wait system calls.
 
 ## Implemented Commands
 
