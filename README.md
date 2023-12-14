@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
 ## Used Functions
 - isatty: tests whether fd is an open file descriptor referring to a terminal.
 - getline: read a line of text from a file, but when stdin is specified, standard input is read.
+- write: write nbyte bytes from the buffer pointed to by buf to the file associated with the open file         descriptor, fildes.
 - strtok: breaks string str into a series of tokens using the delimiter delim.
 - execve: replaces the current process image with a new process image specified by path.
 - exit: the function that forcefully terminates the current program and transfers the control to the operating system to exit the program.
