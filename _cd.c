@@ -1,5 +1,10 @@
 #include "main.h"
-/***/
+/**
+ * main - function
+ * @argc: input
+ * @argv: input
+ * Return:  always 0
+*/
 extern char **environ;
 int main(int argc, char *argv[])
 {
