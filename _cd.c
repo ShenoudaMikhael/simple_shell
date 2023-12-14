@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 /***/
 extern char **environ;
 int main(int argc, char *argv[])
