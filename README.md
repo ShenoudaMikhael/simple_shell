@@ -5,7 +5,7 @@ Simple Shell is a Unix shell program written in C by Stephen Brennan. It is a mi
 
 The shell is a computer program that provides a command-line interface for users to interact with the operating system. It allows users to execute commands, manage files, and automate tasks.
 
-## Usage/Examples
+## ./hsh
 
 ```c
 #include "main.h"
@@ -15,6 +15,13 @@ int main(int argc, char *argv[])
 
 }
 ```
+
+## Used Functions
+- isatty: tests whether fd is an open file descriptor referring to a terminal.
+- getline: read a line of text from a file, but when stdin is specified, standard input is read.
+- strtok: breaks string str into a series of tokens using the delimiter delim.
+- execve: replaces the current process image with a new process image specified by path.
+- exit: the function that forcefully terminates the current program and transfers the control to the operating system to exit the program.
 
 
 ## Implemented Commands
