@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
 - strtok: breaks string str into a series of tokens using the delimiter delim.
 - execve: replaces the current process image with a new process image specified by path.
 - exit: the function that forcefully terminates the current program and transfers the control to the operating system to exit the program.
+- access: the function that forcefully terminates the current program and transfers the control to the operating system to exit the program.
 
 
 ## Implemented Commands
