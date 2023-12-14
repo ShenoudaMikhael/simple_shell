@@ -45,5 +45,6 @@ char **_tokenizer(char *line, char *delim)
 		i++;
 	}
 	cmd[i] = NULL;
+
 	return (cmd);
 }

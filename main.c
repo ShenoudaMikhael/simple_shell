@@ -17,11 +17,13 @@ char *_read_line()
 	n = getline(&string, &len, stdin);
 	if (n == -1)
 	{
-		if (string != NULL)
-			free(string);
+		free(string);
 		return (NULL);
 	}
-
+	if (n > 0 && string[n - 1] == '\n')
+	{
+		string[n - 1] = '\0';
+	}
 	return (string);
 }
 
@@ -38,48 +40,54 @@ int main(int argc, char *argv[])
 	char **paths = NULL;
 	(void)argc;
 
-	while (1)
+start:
+	string = _read_line();
+	if (string == NULL)
 	{
-		string = _read_line();
-		if (string == NULL)
-		{
-			if (isatty(STDIN_FILENO))
-				write(STDOUT_FILENO, "\n", 1);
-
-			return (status);
-		}
-
-		command = _tokenizer(string, " \t\n");
-
-		if (!command)
-			continue;
-		if (_strcmp(command[0], "exit") == 0)
-		{
-			if (command[1])
-			{
-				if (_atoi(command[1]) > 0)
-					status = _atoi(command[1]);
-
-				else
-				{
-					string = _strdup(argv[0]);
-					_strcat(string, " Illegal number:");
-					_strcat(string, command[1]), string[_strlen(string)] = '\n';
-					write(STDERR_FILENO, string, _strlen(string));
-					continue;
-				}
-			}
-			free(paths), paths = NULL, free(command);
-			free(string), exit(status);
-		}
-		paths = _get_paths(environ);
-
-		status = _search_path(paths, command);
-		if (status == 0)
-			status = _excute(command, argv[0], &status);
-		else
-			perror(argv[0]);
-		free(paths), paths = NULL, free(command), free(string);
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "\n", 1);
+		free(string);
+		return (status);
 	}
+
+	command = _tokenizer(string, " \t");
+
+	if (!command)
+		goto start;
+	if (_strcmp(command[0], "exit") == 0)
+	{
+		if (command[1])
+		{
+			if (_atoi(command[1]) > 0)
+				status = _atoi(command[1]);
+
+			else
+			{
+				string = _strdup(argv[0]);
+				_strcat(string, " Illegal number:");
+				_strcat(string, command[1]), string[_strlen(string)] = '\n';
+				write(STDERR_FILENO, string, _strlen(string));
+				goto start;
+			}
+		}
+		free(paths), paths = NULL, free(command);
+
+		free(string), exit(status);
+	}
+	paths = _get_paths(environ);
+
+	status = _search_path(paths, command);
+	if (status == 0)
+		status = _excute(command, argv[0], &status);
+	else
+		perror(argv[0]);
+	free(string);
+
+	free(paths);
+	paths = NULL;
+	if (command[0])
+		free(command[0]);
+	free(command);
+	goto start;
 	return (0);
 }

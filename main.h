@@ -10,6 +10,8 @@
 
 extern char **environ;
 char *_strdup(const char *str);
+char *_strdup2(const char *str);
+
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 char *_strtok(char *str, const char *delim);
@@ -28,5 +30,6 @@ int _excute(char **command, char *argv, int *status);
 int _search_path(char **paths, char **tokens);
 
 void _free_memory(char **ptr);
+void _free_memory1(char **ptr);
 
 #endif
