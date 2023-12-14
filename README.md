@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 - execve: replaces the current process image with a new process image specified by path.
 - exit: the function that forcefully terminates the current program and transfers the control to the operating system to exit the program.
 - access: the function that forcefully terminates the current program and transfers the control to the operating system to exit the program.
+- free: the function that forcefully terminates the current program and transfers the control to the operating system to exit the program.
+- malloc: allocates memory and leaves the memory uninitialized.
 
 
 ## Implemented Commands
