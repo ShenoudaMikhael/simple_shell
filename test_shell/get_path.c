@@ -4,8 +4,6 @@
  * @cmd: command 
  * Return: always 0
 */
-extern char **environ;
-
 char *get_path(char *cmd)
 {
     char **env = environ;

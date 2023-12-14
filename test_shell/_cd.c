@@ -5,7 +5,6 @@
  * @argv: input
  * Return:  always 0
 */
-extern char **environ;
 int main(int argc, char *argv[])
 {
     char *prompt = "~bella$ ";
@@ -25,7 +24,6 @@ int main(int argc, char *argv[])
 
     if (isatty(STDIN_FILENO))
     {
-        printf("Program is running in interactive mode.\n");
         while (1)
         {
             printf("%s", prompt);

@@ -6,6 +6,8 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <stddef.h>
+extern char **environ;
+
 void execmd(char **argv);
 char *get_path(char *command);
 int main(int ac, char **argv);
