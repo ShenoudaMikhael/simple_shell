@@ -1,5 +1,18 @@
 #include "main.h"
 #include <signal.h>
+/**
+ * _error_message - the errror message on wrong exit
+ * @string: intial message
+ * @argv: shell name;
+ * @command: commaend name
+ * Return: void
+ */
+void _error_message(char *string, char *argv, char *command)
+{
+	string = _strdup(argv), _strcat(string, " Illegal number:");
+	_strcat(string, command), string[_strlen(string)] = '\n';
+	write(STDERR_FILENO, string, _strlen(string));
+}
 
 /**
  * _read_line - get line from stdin
@@ -36,8 +49,7 @@ char *_read_line()
 int main(int argc, char *argv[])
 {
 	int status = 0;
-	char *string = NULL, **command = NULL;
-	char **paths = NULL;
+	char *string = NULL, **command = NULL, **paths = NULL;
 	(void)argc;
 
 start:
@@ -49,9 +61,7 @@ start:
 		free(string);
 		return (status);
 	}
-
 	command = _tokenizer(string, " \t");
-
 	if (!command)
 		goto start;
 	if (_strcmp(command[0], "exit") == 0)
@@ -60,33 +70,21 @@ start:
 		{
 			if (_atoi(command[1]) > 0)
 				status = _atoi(command[1]);
-
 			else
 			{
-				string = _strdup(argv[0]);
-				_strcat(string, " Illegal number:");
-				_strcat(string, command[1]), string[_strlen(string)] = '\n';
-				write(STDERR_FILENO, string, _strlen(string));
+				_error_message(string, argv[0], command[1]);
 				goto start;
 			}
 		}
-		free(paths), paths = NULL, free(command);
-
-		free(string), exit(status);
+		free(paths), paths = NULL, free(command), free(string), exit(status);
 	}
-	paths = _get_paths(environ);
-
-	status = _search_path(paths, command);
+	paths = _get_paths(environ), status = _search_path(paths, command);
 	if (status == 0)
 		status = _excute(command, argv[0], &status);
 	else
 		perror(argv[0]);
-	free(string);
-
-	free(paths);
-	paths = NULL;
-	if (command[0])
-		free(command[0]);
+	free(string), free(paths), paths = NULL;
+	(command[0]) ? free(command[0]) : (void)0;
 	free(command);
 	goto start;
 	return (0);

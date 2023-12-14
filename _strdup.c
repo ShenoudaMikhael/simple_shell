@@ -59,7 +59,7 @@ char *_strdup2(const char *str)
 	ptr = malloc(sizeof(char) * (len + 1));
 
 	if (ptr == NULL)
-		return NULL;
+		return (NULL);
 
 	for (i = 0; i < len; i++)
 		ptr[i] = temp[i];

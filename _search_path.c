@@ -12,14 +12,10 @@ int _search_path(char **paths, char **tokens)
 	char *full_cmd = NULL;
 	char *cm = _strdup(tokens[0]);
 
-	
-
 	if (access(cm, F_OK & R_OK) == 0)
 	{
 		free(full_cmd);
-		tokens[0] = _strdup(cm);
-		free(cm);
-		cm = NULL;
+		tokens[0] = _strdup(cm), free(cm), cm = NULL;
 		return (0);
 	}
 	else
@@ -39,21 +35,17 @@ int _search_path(char **paths, char **tokens)
 			{
 				tokens[0] = malloc(strlen(full_cmd) + 1 * sizeof(char));
 				_strcpy(tokens[0], full_cmd);
-				free(full_cmd);
-				full_cmd = NULL;
-				free(cm);
-				cm = NULL;
+				free(full_cmd), full_cmd = NULL;
+				free(cm), cm = NULL;
 				return (0);
 			}
 			else
 			{
 			}
 			free(full_cmd);
-
 			full_cmd = NULL;
 		}
 	}
-	free(cm);
-	cm = NULL;
+	free(cm), cm = NULL;
 	return (127);
 }
