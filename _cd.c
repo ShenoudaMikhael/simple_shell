@@ -95,6 +95,7 @@ int main(int argc, char *argv[])
                     n_dir = home;
                     c_dir = n_dir;
                     chdir(c_dir);
+                    printf("Go To Home:: %s", c_dir);
                 }
                 if (n_dir != NULL && (strcmp(n_dir, "-") != 0))
                 {
@@ -102,11 +103,13 @@ int main(int argc, char *argv[])
                     strcat(c_dir, n_dir);
                     strcat(c_dir, "\0");
                     chdir(c_dir);
+                    printf("Go To New Dir:: %s", c_dir);
                 }
                 if (strcmp(n_dir, "-") == 0)
                 {
                     n_dir = p_dir;
                     chdir(n_dir);
+                    printf("Go To Prev Dir:: %s", c_dir);
                 }
             }
             argv[i] = NULL;
