@@ -14,7 +14,7 @@ Simple shells are often used by developers and system administrators for scripti
 
 int main(int argc, char *argv[])
 {
-
+(void)argc;
 }
 ```
 
