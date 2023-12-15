@@ -31,5 +31,6 @@ int _search_path(char **paths, char **tokens);
 
 void _free_memory(char **ptr);
 void _free_memory1(char **ptr);
+void _printList(char **env);
 
 #endif

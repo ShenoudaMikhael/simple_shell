@@ -1,6 +1,15 @@
 #include "main.h"
 #include <signal.h>
 /**
+ * _env - print list of env
+ * Return: void
+ */
+void _env(void)
+{
+	_printList(environ);
+}
+
+/**
  * _error_message - the errror message on wrong exit
  * @string: intial message
  * @argv: shell name;
@@ -52,40 +61,30 @@ int main(int argc, char *argv[])
 	char *string = NULL, **command = NULL, **paths = NULL;
 	(void)argc;
 
-start:
-	string = _read_line();
-	if (string == NULL)
+	while ((string = _read_line()))
 	{
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "\n", 1);
-		free(string);
-		return (status);
-	}
-	command = _tokenizer(string, " \t");
-	if (!command)
-		goto start;
-	if (_strcmp(command[0], "exit") == 0)
-	{
-		if (command[1])
+		command = _tokenizer(string, " \t");
+		if (!command)
+			continue;
+
+		if (_strcmp(command[0], "env") == 0)
+			{_env(), free(command), free(string);
+			continue; }
+		if (_strcmp(command[0], "exit") == 0)
 		{
-			if (_atoi(command[1]) > 0)
-				status = _atoi(command[1]);
-			else
+			if (command[1])
 			{
-				_error_message(string, argv[0], command[1]);
-				goto start;
+				status = (_atoi(command[1]) > 0) ? _atoi(command[1]) :
+				(_error_message(string, argv[0], command[1]), 0);
 			}
+			free(paths), paths = NULL, free(command), free(string), exit(status);
 		}
-		free(paths), paths = NULL, free(command), free(string), exit(status);
+		paths = _get_paths(environ), status = (_search_path(paths, command) == 0) ?
+		_excute(command, argv[0], &status) : (perror(argv[0]), 0);
+		free(string), free(paths), paths = NULL, (command[0]) ? free(command[0]) :
+		(void)0, free(command);
 	}
-	paths = _get_paths(environ), status = _search_path(paths, command);
-	if (status == 0)
-		status = _excute(command, argv[0], &status);
-	else
-		perror(argv[0]);
-	free(string), free(paths), paths = NULL;
-	(command[0]) ? free(command[0]) : (void)0;
-	free(command);
-	goto start;
-	return (0);
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, "\n", 1);
+	return (status);
 }
